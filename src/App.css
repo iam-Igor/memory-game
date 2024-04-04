@@ -1,0 +1,123 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+a {
+  color: white;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.card-img {
+  height: 108px;
+  width: 108px;
+}
+
+.shadow-btm {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.redtoblue {
+  animation: changeBackgroundTored 0.5s linear forwards;
+}
+
+.bluetored {
+  animation: changeBackgroundToBlue 0.5s linear forwards;
+}
+
+.board-game {
+  width: 930px;
+  height: 380px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.card-wrapper {
+  animation: bounce-in-top 0.8s both;
+}
+
+@keyframes bounce-in-top {
+  0% {
+    transform: translateY(-500px);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    transform: translateY(-65px);
+    animation-timing-function: ease-in;
+  }
+  72% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  81% {
+    transform: translateY(-28px);
+    animation-timing-function: ease-in;
+  }
+  90% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  95% {
+    transform: translateY(-8px);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes changeBackgroundTored {
+  0% {
+    background-color: #303f9f;
+  }
+
+  100% {
+    background-color: #d32f2f;
+  }
+}
+
+@keyframes changeBackgroundToBlue {
+  0% {
+    background-color: #d32f2f;
+  }
+
+  100% {
+    background-color: #303f9f;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card-img {
+    height: 68px;
+    width: 68px;
+  }
+
+  .board-game {
+    width: 360px;
+    height: 480px;
+  }
+}
+
+.flip-right {
+  animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+    both;
+}
+
+@keyframes flip-vertical-right {
+  0% {
+    transform: rotateY(0);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
