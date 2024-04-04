@@ -88,7 +88,6 @@ const Tab = () => {
     setFirstArray(finalArray);
   };
 
-  console.log(correct);
   const evaluateClick = (item) => {
     let tempArray = [];
 
@@ -107,7 +106,6 @@ const Tab = () => {
 
       if (tempArray.length === 2) {
         if (tempArray[0].name === tempArray[1].name) {
-          console.log("pair");
           setCorrect([...correct, item.name]);
           if (!userToPlayNext) {
             setScore({ ...score, red: score.red + 1 });
@@ -119,7 +117,6 @@ const Tab = () => {
             setClicked(tempArray);
           }, 1000);
         } else {
-          console.log("not pair");
           tempArray = [];
           setTimeout(() => {
             setClicked(tempArray);
@@ -143,7 +140,6 @@ const Tab = () => {
           setWinner("Draw");
           setShowWinner(true);
         }
-        console.log("end, the winner is: " + winner);
       }
     }
   };
@@ -166,10 +162,6 @@ const Tab = () => {
     checkEndgame();
   }, [correct]);
 
-  console.log(
-    "score:" + " " + "red:" + score.red + ", " + "blue: " + score.blue
-  );
-
   return (
     <Container fluid className="p-0">
       {showWinner && (
@@ -182,7 +174,7 @@ const Tab = () => {
         }`}
       >
         <div>
-          <h1 className="text-center text-white mb-4">Pairs Game!</h1>
+          <h1 className="text-center text-white mb-4">Memory Game!</h1>
         </div>
         {firstArray && (
           <div className="d-flex flex-wrap justify-content-around  rounded-4 board-game">
@@ -194,7 +186,6 @@ const Tab = () => {
                   style={{ animationDelay: `${i * 0.1}s` }}
                   onClick={() => {
                     evaluateClick(item, i);
-                    setClickedcard(!clickedCard);
                   }}
                 >
                   <img src={setBGCard(item, item.id)} className="card-img" />
