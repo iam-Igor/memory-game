@@ -169,7 +169,7 @@ const Tab = () => {
       )}
 
       <Row
-        className={`flex-column align-items-center py-5 justify-content-center ${
+        className={`flex-column align-items-center py-5 pt-2 pt-md-5 justify-content-center ${
           !userToPlayNext ? "redtoblue" : "bluetored"
         }`}
       >

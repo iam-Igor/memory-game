@@ -3,6 +3,7 @@
 
 body {
   font-family: "Exo 2", sans-serif;
+  overflow-x: hidden;
 }
 a {
   color: white;
