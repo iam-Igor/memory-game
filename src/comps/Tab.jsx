@@ -101,7 +101,6 @@ const Tab = () => {
       correct.includes(item.name) ||
       clicked.some((card) => card.id === item.id)
     ) {
-      console.log("Already clicked");
       wrongRef.current.play();
     } else {
       if (clicked.length <= 0) {
@@ -132,7 +131,7 @@ const Tab = () => {
           wrongRef.current.play();
           setTimeout(() => {
             setClicked(tempArray);
-            audioRef.current.play();
+
             setUserToPlayNext(!userToPlayNext);
           }, 1000);
         }
