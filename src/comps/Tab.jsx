@@ -99,7 +99,7 @@ const Tab = () => {
 
     if (
       correct.includes(item.name) ||
-      clicked.some((card) => card.name === item.name)
+      clicked.some((card) => card.id === item.id)
     ) {
       console.log("Already clicked");
       wrongRef.current.play();
