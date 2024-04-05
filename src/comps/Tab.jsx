@@ -13,14 +13,16 @@ import pizza from "../assets/img/pizza.png";
 import sunflower from "../assets/img/sunflower.png";
 import umbrella from "../assets/img/umbrella.png";
 import back from "../assets/img/Back.png";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Confetti from "react-confetti";
+import swing from "../assets/audio/swing.mp3";
 
 const Tab = () => {
   const [firstArray, setFirstArray] = useState(null);
 
   const [correct, setCorrect] = useState([]);
 
+  const audioRef = useRef(null);
   const [show, setShow] = useState(false);
   const [showWinner, setShowWinner] = useState(false);
   const handleClose = () => setShow(false);
@@ -120,11 +122,13 @@ const Tab = () => {
           tempArray = [];
           setTimeout(() => {
             setClicked(tempArray);
+            audioRef.current.play();
             setUserToPlayNext(!userToPlayNext);
           }, 1000);
         }
       }
     }
+    audioRef.current.play();
   };
 
   const checkEndgame = () => {
@@ -160,7 +164,11 @@ const Tab = () => {
       loadArrayN1();
     }
     checkEndgame();
-  }, [correct]);
+  }, [correct, clicked]);
+
+  useEffect(() => {
+    audioRef.current = new Audio(swing);
+  }, []);
 
   return (
     <Container fluid className="p-0">
@@ -182,7 +190,7 @@ const Tab = () => {
               return (
                 <div
                   key={i}
-                  className="d-flex align-items-center mb-3 pointer card-wrapper"
+                  className={`d-flex align-items-center mb-3 pointer card-wrapper`}
                   style={{ animationDelay: `${i * 0.1}s` }}
                   onClick={() => {
                     evaluateClick(item, i);
