@@ -16,6 +16,8 @@ import back from "../assets/img/Back.png";
 import { useEffect, useRef, useState } from "react";
 import Confetti from "react-confetti";
 import swing from "../assets/audio/swing.mp3";
+import correctGuess from "../assets/audio/correct.mp3";
+import wrongGuess from "../assets/audio/wrong.mp3";
 
 const Tab = () => {
   const [firstArray, setFirstArray] = useState(null);
@@ -23,6 +25,8 @@ const Tab = () => {
   const [correct, setCorrect] = useState([]);
 
   const audioRef = useRef(null);
+  const correctRef = useRef(null);
+  const wrongRef = useRef(null);
   const [show, setShow] = useState(false);
   const [showWinner, setShowWinner] = useState(false);
   const handleClose = () => setShow(false);
@@ -93,8 +97,12 @@ const Tab = () => {
   const evaluateClick = (item) => {
     let tempArray = [];
 
-    if (correct.includes(item.name)) {
+    if (
+      correct.includes(item.name) ||
+      clicked.some((card) => card.name === item.name)
+    ) {
       console.log("Already clicked");
+      wrongRef.current.play();
     } else {
       if (clicked.length <= 0) {
         tempArray.push(item);
@@ -109,6 +117,7 @@ const Tab = () => {
       if (tempArray.length === 2) {
         if (tempArray[0].name === tempArray[1].name) {
           setCorrect([...correct, item.name]);
+          correctRef.current.play();
           if (!userToPlayNext) {
             setScore({ ...score, red: score.red + 1 });
           } else {
@@ -120,6 +129,7 @@ const Tab = () => {
           }, 1000);
         } else {
           tempArray = [];
+          wrongRef.current.play();
           setTimeout(() => {
             setClicked(tempArray);
             audioRef.current.play();
@@ -168,6 +178,8 @@ const Tab = () => {
 
   useEffect(() => {
     audioRef.current = new Audio(swing);
+    correctRef.current = new Audio(correctGuess);
+    wrongRef.current = new Audio(wrongGuess);
   }, []);
 
   return (
